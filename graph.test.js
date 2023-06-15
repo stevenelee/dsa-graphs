@@ -139,7 +139,7 @@ describe("removeVertex", function () {
   });
 });
 
-describe.only("DFS", function () {
+describe("DFS", function () {
   it("return an array of the nodes searched using DFS", function () {
     // build complex graph
     //
@@ -275,7 +275,7 @@ describe("BFS", function () {
   });
 });
 
-describe("distanceOfShortestPath", function () {
+describe.only("distanceOfShortestPath", function () {
   it("should return distance of shortest path from start to end vertices", function () {
     // build graph
     //

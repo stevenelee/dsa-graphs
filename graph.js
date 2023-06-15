@@ -59,50 +59,83 @@ class Graph {
     }
     this.nodes.delete(vertex)
 
-
-
     //  if (this.nodes.has(vertex)){
     //   this.nodes.delete(vertex);
     //  }
     //  console.log("this.nodes", this.nodes)
-    //  this.nodes[vertex].forEach
-
   }
 
   /** traverse graph with DFS and returns array of Node values */
   depthFirstSearch(start) {
     const stack = [start];
-    const arrayOfNodes = new Set(stack);
+    const visitedNodes = new Set(stack);
     const nodeValue = [];
 
+    while (stack.length > 0){
+      let currentNode = stack.pop();
 
+      nodeValue.push(currentNode.value);
 
-  // while stack length greater than zero
-  while (stack.length > 0){
-    let currentNode = stack.pop();
-
-    nodeValue.push(currentNode.value);
-
-   for(let node of currentNode.adjacent){
-    if ( !arrayOfNodes.has(node)){
-      stack.push(node);
-      arrayOfNodes.add(node);
+      for(let node of currentNode.adjacent) {
+        if (!visitedNodes.has(node)){
+          stack.push(node);
+          visitedNodes.add(node);
+        }
+      }
     }
-   }
+
+    return nodeValue;
   }
-  return nodeValue;
-
-
-   }
 
   /** traverse graph with BDS and returns array of Node values */
   breadthFirstSearch(start) {
+    const queue = [start];
+    const visitedNodes = new Set(queue);
+    const nodeValue = [];
 
-    
+    while (queue.length > 0){
+      let currentNode = queue.shift();
+
+      nodeValue.push(currentNode.value);
+
+      for(let node of currentNode.adjacent) {
+        if (!visitedNodes.has(node)){
+          queue.push(node);
+          visitedNodes.add(node);
+        }
+      }
+    }
+
+    return nodeValue;
   }
 
   /** find the distance of the shortest path from the start vertex to the end vertex */
-  distanceOfShortestPath(start, end) { }
+  distanceOfShortestPath(start, end) {
+    let queue = [start];
+    let visitedNodes = new Set(queue);
+    let pathDistance = 0;
+
+    if (start === end) return 0;
+
+    debugger;
+    while (queue.length > 0) {
+      let currentNode = queue.shift();
+
+      debugger;
+      for (let node of currentNode.adjacent) {
+        if (!visitedNodes.has(node)) {
+          if (node === end) {
+            return pathDistance++;
+          } else {
+            queue.push(node);
+            visitedNodes.add(node);
+          }
+        }
+      }
+      pathDistance++;
+    }
+  }
+
 }
 
 module.exports = { Graph, Node }
