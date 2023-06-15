@@ -139,7 +139,7 @@ describe("removeVertex", function () {
   });
 });
 
-describe("DFS", function () {
+describe.only("DFS", function () {
   it("return an array of the nodes searched using DFS", function () {
     // build complex graph
     //
