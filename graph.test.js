@@ -275,7 +275,7 @@ describe("BFS", function () {
   });
 });
 
-describe.only("distanceOfShortestPath", function () {
+describe("distanceOfShortestPath", function () {
   it("should return distance of shortest path from start to end vertices", function () {
     // build graph
     //
