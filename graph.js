@@ -111,28 +111,21 @@ class Graph {
 
   /** find the distance of the shortest path from the start vertex to the end vertex */
   distanceOfShortestPath(start, end) {
-    let queue = [start];
+    let queue = [[start, 0]];
     let visitedNodes = new Set(queue);
-    let pathDistance = 0;
 
     if (start === end) return 0;
 
-    debugger;
     while (queue.length > 0) {
-      let currentNode = queue.shift();
+      let [currentNode, pathDistance] = queue.shift();
+      if (currentNode === end) return pathDistance;
 
-      debugger;
       for (let node of currentNode.adjacent) {
         if (!visitedNodes.has(node)) {
-          if (node === end) {
-            return pathDistance++;
-          } else {
-            queue.push(node);
-            visitedNodes.add(node);
-          }
+          queue.push([node, pathDistance + 1]);
+          visitedNodes.add(node);
         }
       }
-      pathDistance++;
     }
   }
 
